@@ -1,14 +1,39 @@
 <div class="gb-stats" layout="row" layout-align="space-around center">
-  <gb-statistic label="Min Score" stat="64" flex="25"></gb-statistic>
-  <gb-statistic label="Max Score" stat="99" flex="25"></gb-statistic>
-  <gb-statistic label="Average Score" stat="50" flex="25"></gb-statistic>
+  <gb-statistic label="Min Score" stat="ctrl.GradeService.minScore(ctrl.GradeService.data.grades)" flex="25"></gb-statistic>
+  <gb-statistic label="Max Score" stat="ctrl.GradeService.maxScore(ctrl.GradeService.data.grades)" flex="25"></gb-statistic>
+  <gb-statistic label="Average Score" stat="ctrl.GradeService.averageScore(ctrl.GradeService.data.grades)" flex="25"></gb-statistic>
 </div>
 
-<div class="gb-student-grades" ng-repeat="grade in ctrl.GradeService.data.grades" layout="row" layout-align="start center">
-  <div flex="70">{{grade.name}}</div>
-  <div flex="30">{{grade.score}}</div>
+<md-toolbar class="md-primary">
+  <div class="md-toolbar-tools">
+    <h2 class="md-flex">Student Scores</h2>
+    <span flex></span>
+    <md-button class="md-fab md-mini" aria-label="Add Student" ng-click="ctrl.newStudent($event)">
+      <md-icon>add</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
 
-  <md-button class="md-icon-button" aria-label="Delete" ng-click="ctrl.GradeService.remove(grade.id)">
-    <md-icon>delete</md-icon>
-  </md-button>
+<div class="gb-student-grades" ng-if="ctrl.GradeService.data.grades.length">
+  <div class="gb-student-grade" ng-repeat="grade in ctrl.GradeService.data.grades" layout="row" layout-align="start center">
+    <md-input-container flex="90">
+      <label>Student Name</label>
+      <input ng-model="grade.name" type="text">
+    </md-input-container>
+
+    <md-input-container flex="10">
+      <label>Score</label>
+      <input ng-model="grade.score" type="number">
+    </md-input-container>
+
+    <md-button class="md-icon-button" aria-label="Delete" ng-click="ctrl.removeStudent($event, grade.id)">
+      <md-icon>delete</md-icon>
+    </md-button>
+  </div>
 </div>
+
+<gb-zero-state ng-if="!ctrl.GradeService.data.grades.length">
+  You need to enter some students.
+</gb-zero-state>
+
+<pre>{{ctrl.GradeService.data.grades | json}}</pre>

@@ -10,13 +10,12 @@ md-toolbar .md-toolbar-tools h2 {
 }
 
 .gb-stats {
-  margin: 1em 0;
-
+  margin: 1em 0 2em;
 }
 
 gb-statistic div {
   color: #fff;
-  background-color: #0091ea;
+  background-color: #E91E63;
   border-radius: 3px;
   padding: 1em;
 }
@@ -34,4 +33,23 @@ gb-statistic figure {
   font-weight: 600;
   text-align: center;
   margin: 0;
+}
+
+.gb-student-grades {
+  background-color: #ccc;
+  padding: 1em;
+}
+
+.gb-student-grade {
+  background-color: #fff;
+  padding: 0.5em;
+  margin-bottom: .25em;
+}
+
+gb-zero-state {
+  padding: 1em;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+  background-color: #efefef;
 }
