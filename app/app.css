@@ -1,0 +1,37 @@
+md-toolbar .md-toolbar-tools h2 {
+  width: 1024px;
+  margin: auto;
+}
+
+#gb-wrapper {
+  padding: 1em;
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.gb-stats {
+  margin: 1em 0;
+
+}
+
+gb-statistic div {
+  color: #fff;
+  background-color: #0091ea;
+  border-radius: 3px;
+  padding: 1em;
+}
+
+gb-statistic h2 {
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+gb-statistic figure {
+  display: block;
+  font-size: 50px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}

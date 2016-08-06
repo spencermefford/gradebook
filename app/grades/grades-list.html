@@ -1,0 +1,14 @@
+<div class="gb-stats" layout="row" layout-align="space-around center">
+  <gb-statistic label="Min Score" stat="64" flex="25"></gb-statistic>
+  <gb-statistic label="Max Score" stat="99" flex="25"></gb-statistic>
+  <gb-statistic label="Average Score" stat="50" flex="25"></gb-statistic>
+</div>
+
+<div class="gb-student-grades" ng-repeat="grade in ctrl.GradeService.data.grades" layout="row" layout-align="start center">
+  <div flex="70">{{grade.name}}</div>
+  <div flex="30">{{grade.score}}</div>
+
+  <md-button class="md-icon-button" aria-label="Delete" ng-click="ctrl.GradeService.remove(grade.id)">
+    <md-icon>delete</md-icon>
+  </md-button>
+</div>
