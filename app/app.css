@@ -35,15 +35,33 @@ gb-statistic figure {
   margin: 0;
 }
 
-.gb-student-grades {
-  background-color: #ccc;
-  padding: 1em;
+gb-grade {
+  display: block;
+  background-color: #fff;
+  border: 4px solid #ccc;
+  margin-bottom: -4px;
 }
 
-.gb-student-grade {
-  background-color: #fff;
-  padding: 0.5em;
-  margin-bottom: .25em;
+gb-grade .gb-name,
+gb-grade .gb-score {
+  padding: .5em;
+}
+
+gb-grade .gb-name,
+gb-grade .gb-score {
+  border-right: 4px solid #ccc;
+}
+
+gb-grade input {
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  width: 100%;
+}
+
+gb-grade .gb-score,
+gb-grade .gb-score input {
+  text-align: right;
 }
 
 gb-zero-state {

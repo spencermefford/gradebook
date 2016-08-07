@@ -1,33 +1,40 @@
-<div layout="row" layout-align="start center">
+<div layout="row" layout-align="start stretch">
+
+  <!-- TODO: Hitting enter updates field twice -->
 
   <!-- TODO: Validation Errors -->
-  <md-input-container flex="90">
-    <label>Student Name</label>
+  <div class="gb-name" flex="85" layout="row">
+    <md-icon flex="none">person</md-icon>
+    <div flex>
+      <input
+          type="text"
+          placeholder="Name"
+          ng-model="$ctrl.grade.name"
+          ng-model-options="{ updateOn: 'blur' }"
+          ng-change="$ctrl.update()"
+          ng-keyup="$ctrl.update($event)"
+      >
+    </div>
+  </div>
+
+
+  <!-- TODO: Validation Errors -->
+  <div class="gb-score" flex="10">
     <input
-        type="text"
-        ng-model="$ctrl.grade.name"
+        type="number"
+        placeholder="Score"
+        min="0"
+        max="100"
+        ng-model="$ctrl.grade.score"
         ng-model-options="{ updateOn: 'blur' }"
         ng-change="$ctrl.update()"
         ng-keyup="$ctrl.update($event)"
     >
-  </md-input-container>
+  </div>
 
-
-  <!-- TODO: Validation Errors -->
-  <md-input-container flex="10">
-    <label>Score</label>
-    <input
-        type="number"
-        min="0"
-        max="100"
-        ng-model="$ctrl.grade.score"
-        ng-model-options="{ updateOn: 'blur change' }"
-        ng-change="$ctrl.update()"
-        ng-keyup="$ctrl.update($event)"
-    >
-  </md-input-container>
-
-  <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
-    <md-icon>delete</md-icon>
-  </md-button>
+  <div class="gb-action" flex="5">
+    <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
+      <md-icon>delete</md-icon>
+    </md-button>
+  </div>
 </div>
