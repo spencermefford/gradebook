@@ -47,8 +47,6 @@
 
       return $http.post(API_GRADES, data)
         .then(function(resp) {
-          console.log(resp);
-
           service.data.grades.push(resp.data);
 
           return resp.data;
@@ -74,7 +72,6 @@
      * @returns {Promise}
      */
     function remove(id) {
-      console.log(id);
       return $http.delete(API_GRADES + '/' + id)
         .then(function(resp) {
           var found = _.find(service.data.grades, ['id', id]);
@@ -91,7 +88,7 @@
      * @returns {number} Min score.
      */
     function minScore(grades) { // TODO: Unit tests
-      var min = _.minBy(grades, 'score');
+      var min = _.minBy(_filteredScores(grades), 'score');
 
       return min && min.score || 0;
     }
@@ -102,7 +99,7 @@
      * @returns {number} Max score.
      */
     function maxScore(grades) { // TODO: Unit tests
-      var max = _.maxBy(grades, 'score');
+      var max = _.maxBy(_filteredScores(grades), 'score');
 
       return max && max.score || 0;
     }
@@ -113,7 +110,19 @@
      * @returns {number} Average score.
      */
     function meanScore(grades) { // TODO: Unit tests
-      return _.meanBy(grades, 'score') || 0;
+      return _.meanBy(_filteredScores(grades), 'score') || 0;
+    }
+
+    /**
+     * Filter scores to only numeric values. This way empties don't throw our values off.
+     * @param {Array} grades
+     * @returns {Array} Array of filtered scores.
+     * @private
+     */
+    function _filteredScores(grades) {
+      return _.filter(grades, function(grade) {
+        return _.isNumber(grade.score);
+      });
     }
   }
 })();
