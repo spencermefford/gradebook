@@ -18,7 +18,7 @@
     service.remove = remove;
     service.minScore = minScore;
     service.maxScore = maxScore;
-    service.averageScore = averageScore;
+    service.meanScore = meanScore;
 
     /**
      * Fetch all Grades.
@@ -85,16 +85,35 @@
         });
     }
 
+    /**
+     * Get the min score from all grades.
+     * @param {Array} grades
+     * @returns {number} Min score.
+     */
     function minScore(grades) { // TODO: Unit tests
-      return 1;
+      var min = _.minBy(grades, 'score');
+
+      return min && min.score || 0;
     }
 
+    /**
+     * Get the max score from all grades.
+     * @param {Array} grades
+     * @returns {number} Max score.
+     */
     function maxScore(grades) { // TODO: Unit tests
-      return 2;
+      var max = _.maxBy(grades, 'score');
+
+      return max && max.score || 0;
     }
 
-    function averageScore(grades) { // TODO: Unit tests
-      return 3;
+    /**
+     * Get the average score from all grades.
+     * @param {Array} grades
+     * @returns {number} Average score.
+     */
+    function meanScore(grades) { // TODO: Unit tests
+      return _.meanBy(grades, 'score') || 0;
     }
   }
 })();
