@@ -22,18 +22,18 @@
 
     /**
      * Update the grade.
-     * @param {Object} grade
      */
-    function update(grade) {
-      ctrl.onUpdate({$grade: grade}); // Execute the onUpdate function
+    function update(ev) {
+      if (_.isUndefined(ev) || (!_.isEmpty(ev) && ev.keyCode === 13)) {
+        ctrl.onUpdate({$grade: ctrl.grade}); // Execute the onUpdate function
+      }
     }
 
     /**
      * Remove a grade.
      * @param {Event} ev Event.
-     * @param {Object} grade Grade.
      */
-    function remove(ev, grade) {
+    function remove(ev) {
       var confirm = $mdDialog.confirm()
         .title('Are you sure you want to delete this student?')
         .targetEvent(ev)
@@ -42,7 +42,7 @@
 
       $mdDialog.show(confirm)
         .then(function() {
-          ctrl.onDelete({$grade: grade}); // Execute the onDelete function
+          ctrl.onDelete({$grade: ctrl.grade}); // Execute the onDelete function
         });
     }
   }

@@ -1,15 +1,33 @@
 <div layout="row" layout-align="start center">
+
+  <!-- TODO: Validation Errors -->
   <md-input-container flex="90">
     <label>Student Name</label>
-    <input type="text" ng-model="$ctrl.grade.name" ng-model-options="{ updateOn: 'blur' }" ng-change="$ctrl.onUpdate({$grade: $ctrl.grade})">
+    <input
+        type="text"
+        ng-model="$ctrl.grade.name"
+        ng-model-options="{ updateOn: 'blur' }"
+        ng-change="$ctrl.update()"
+        ng-keyup="$ctrl.update($event)"
+    >
   </md-input-container>
 
+
+  <!-- TODO: Validation Errors -->
   <md-input-container flex="10">
     <label>Score</label>
-    <input type="number" ng-model="$ctrl.grade.score" ng-model-options="{ updateOn: 'blur' }" ng-change="$ctrl.onUpdate({$grade: $ctrl.grade})">
+    <input
+        type="number"
+        min="0"
+        max="100"
+        ng-model="$ctrl.grade.score"
+        ng-model-options="{ updateOn: 'blur change' }"
+        ng-change="$ctrl.update()"
+        ng-keyup="$ctrl.update($event)"
+    >
   </md-input-container>
 
-  <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event, $ctrl.grade)">
+  <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
     <md-icon>delete</md-icon>
   </md-button>
 </div>
