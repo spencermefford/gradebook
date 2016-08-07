@@ -1,7 +1,5 @@
 <div layout="row" layout-align="start stretch">
 
-  <!-- TODO: Hitting enter updates field twice -->
-
   <!-- TODO: Validation Errors -->
   <div class="gb-name" flex="85" layout="row">
     <md-icon flex="none">person</md-icon>
@@ -34,6 +32,9 @@
 
   <div class="gb-action" flex="5">
     <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
+      <md-tooltip md-direction="top">
+        Delete
+      </md-tooltip>
       <md-icon>delete</md-icon>
     </md-button>
   </div>

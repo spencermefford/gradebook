@@ -9,13 +9,16 @@
     <h2 class="md-flex">Student Scores</h2>
     <span flex></span>
     <md-button class="md-fab md-mini" aria-label="Add Student" ng-click="ctrl.newStudent($event)">
+      <md-tooltip md-direction="top">
+        New Student
+      </md-tooltip>
       <md-icon>add</md-icon>
     </md-button>
   </div>
 </md-toolbar>
 
 <div class="gb-student-grades" ng-if="ctrl.GradeService.data.grades.length">
-  <gb-grade grade="grade" on-update="ctrl.updateStudent($grade)" on-delete="ctrl.removeStudent($grade)" ng-repeat="grade in ctrl.GradeService.data.grades"></gb-grade>
+  <gb-grade grade="grade" on-update="ctrl.updateStudent($grade)" on-delete="ctrl.removeStudent($grade)" ng-repeat="grade in ctrl.GradeService.data.grades | orderBy:'name'"></gb-grade>
 </div>
 
 <gb-zero-state ng-if="!ctrl.GradeService.data.grades.length">
