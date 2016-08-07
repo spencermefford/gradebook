@@ -11,14 +11,6 @@
         check_circle
       </md-icon>
 
-      <!-- Validation Error -->
-      <md-icon class="gb-bad" flex="none" ng-if="gradeForm.$invalid">
-        <md-tooltip>
-          <span ng-if="gradeForm.name.$error.required || gradeForm.score.$error.required">All fields required</span>
-        </md-tooltip>
-        error
-      </md-icon>
-
       <!-- Failing Score -->
       <md-icon class="gb-warn" flex="none" ng-if="gradeForm.$valid && $ctrl.grade.score < 65">
         <md-tooltip>
@@ -26,7 +18,17 @@
         </md-tooltip>
         warning
       </md-icon>
-      
+
+      <!-- Validation Error -->
+      <md-icon class="gb-bad" flex="none" ng-if="gradeForm.$invalid">
+        <md-tooltip>
+          <span ng-if="gradeForm.name.$error.required || gradeForm.score.$error.required">All fields required</span>
+          <span ng-if="gradeForm.name.$error.pattern">Invalid Name</span>
+          <span ng-if="gradeForm.score.$error.min || gradeForm.score.$error.max">Invalid Score</span>
+        </md-tooltip>
+        error
+      </md-icon>
+
       <div flex>
         <input
             name="name"
@@ -36,6 +38,7 @@
             ng-model-options="{ updateOn: 'blur' }"
             ng-change="$ctrl.update()"
             gb-update-on-enter
+            ng-pattern="/^[a-zA-Z\s]+$/"
             required
         >
       </div>
@@ -51,8 +54,8 @@
           ng-model-options="{ updateOn: 'blur' }"
           ng-change="$ctrl.update()"
           gb-update-on-enter
-          ng-minlength="0"
-          ng-maxlength="100"
+          min="0"
+          max="100"
           required
       >
     </div>

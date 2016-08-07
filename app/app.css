@@ -1,3 +1,7 @@
+html {
+  overflow-y: scroll;
+}
+
 md-toolbar .md-toolbar-tools h2 {
   width: 1024px;
   margin: auto;
@@ -68,7 +72,7 @@ gb-grade input {
   transition: all 0.5s ease;
 }
 
-gb-grade input.ng-empty {
+gb-grade input.ng-invalid {
   border-bottom-color: red;
 }
 
