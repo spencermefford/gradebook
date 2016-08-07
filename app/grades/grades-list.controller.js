@@ -4,7 +4,7 @@
   angular.module('gradebookApp')
     .controller('GradesListCtrl', GradesListCtrl);
 
-  function GradesListCtrl($mdDialog, GradeService) {
+  function GradesListCtrl($mdDialog, $mdToast, GradeService) {
     var ctrl = this;
 
     ctrl.GradeService = GradeService;
@@ -37,7 +37,15 @@
      */
     function updateStudent(grade) {
       if (_.isPlainObject(grade) && !_.isEmpty(grade)) {
-        GradeService.update(grade.id, grade);
+        GradeService.update(grade.id, grade)
+          .then(function() {
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Saved Changes')
+                .position('bottom right')
+                .hideDelay(3000)
+            );
+          });
       }
     }
 
@@ -47,7 +55,15 @@
      */
     function removeStudent(grade) {
       if (_.isPlainObject(grade) && !_.isEmpty(grade)) {
-        GradeService.remove(grade.id);
+        GradeService.remove(grade.id)
+          .then(function() {
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Record Deleted')
+                .position('bottom right')
+                .hideDelay(3000)
+            );
+          });
       }
     }
   }
