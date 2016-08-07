@@ -19,6 +19,7 @@
     service.minScore = minScore;
     service.maxScore = maxScore;
     service.meanScore = meanScore;
+    service._filteredScores = _filteredScores;
 
     /**
      * Fetch all Grades.
@@ -87,10 +88,11 @@
      * @param {Array} grades
      * @returns {number} Min score.
      */
-    function minScore(grades) { // TODO: Unit tests
-      var min = _.minBy(_filteredScores(grades), 'score');
+    function minScore(grades) {
+      var scores = _filteredScores(grades);
+      var min = _.min(scores);
 
-      return min && min.score || 0;
+      return min || 0;
     }
 
     /**
@@ -98,10 +100,11 @@
      * @param {Array} grades
      * @returns {number} Max score.
      */
-    function maxScore(grades) { // TODO: Unit tests
-      var max = _.maxBy(_filteredScores(grades), 'score');
+    function maxScore(grades) {
+      var scores = _filteredScores(grades);
+      var max = _.max(scores);
 
-      return max && max.score || 0;
+      return max || 0;
     }
 
     /**
@@ -109,8 +112,10 @@
      * @param {Array} grades
      * @returns {number} Average score.
      */
-    function meanScore(grades) { // TODO: Unit tests
-      return _.meanBy(_filteredScores(grades), 'score') || 0;
+    function meanScore(grades) {
+      var scores = _filteredScores(grades);
+
+      return _.mean(scores) || 0;
     }
 
     /**
@@ -120,8 +125,10 @@
      * @private
      */
     function _filteredScores(grades) {
-      return _.filter(grades, function(grade) {
-        return _.isNumber(grade.score);
+      var mappedScores = _.map(grades, 'score');
+
+      return _.filter(mappedScores, function(score) {
+        return _.isNumber(score);
       });
     }
   }
