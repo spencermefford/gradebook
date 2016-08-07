@@ -3,13 +3,13 @@ html {
 }
 
 md-toolbar .md-toolbar-tools h2 {
-  width: 1024px;
+  max-width: 1024px;
   margin: auto;
 }
 
 #gb-wrapper {
   padding: 1em;
-  width: 1024px;
+  max-width: 1024px;
   margin: 0 auto;
 }
 
@@ -46,17 +46,24 @@ gb-grade {
   margin-bottom: -4px;
 }
 
-gb-grade .gb-name,
-gb-grade .gb-score {
+gb-grade .gb-cell {
   padding: .5em;
+  border-right: 4px solid #ccc;
+  font-size: 20px;
+  font-weight: 500;
 }
 
-gb-grade .gb-name,
-gb-grade .gb-score {
-  border-right: 4px solid #ccc;
+gb-grade .gb-cell:last-child {
+  border-right: none;
+}
+
+gb-grade .gb-score,
+gb-grade .gb-score input {
+  text-align: right;
 }
 
 gb-grade .gb-action {
+  padding: 0;
   display: flex;
   align-items: center;
 }
@@ -82,11 +89,6 @@ gb-grade input:focus {
 
 gb-grade input:focus:not(.ng-invalid) {
   border-bottom: 2px solid #2296f3;
-}
-
-gb-grade .gb-score,
-gb-grade .gb-score input {
-  text-align: right;
 }
 
 gb-zero-state {
