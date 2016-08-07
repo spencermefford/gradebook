@@ -1,51 +1,55 @@
-  <form name="gradeForm" novalidate layout="row" layout-align="start stretch">
-    <!-- TODO: Use ngPattern?? -->
+<form name="gradeForm" novalidate layout="row" layout-align="start stretch">
+  <div class="gb-cell" flex="nogrow" layout="row" layout-align="center center">
+    {{$ctrl.index + 1}}.
+  </div>
 
-    <!-- Name -->
-    <div class="gb-name" flex="85" layout="row">
-      <!-- Passing Score -->
-      <md-icon class="gb-good" flex="none" ng-if="$ctrl.grade.score >= 65 && gradeForm.name.$valid">
-        <md-tooltip>
-          Passing Grade
-        </md-tooltip>
-        check_circle
-      </md-icon>
+  <!-- Name -->
+  <div class="gb-cell gb-name" flex layout="row">
+    <!-- Validation Error -->
+    <md-icon class="gb-bad" flex="none" ng-if="gradeForm.name.$invalid">
+      <md-tooltip>
+        <span ng-if="gradeForm.name.$error.required">Field is Required</span>
+        <span ng-if="gradeForm.name.$error.pattern">Invalid Name</span>
+      </md-tooltip>
+      error
+    </md-icon>
 
-      <!-- Failing Score -->
-      <md-icon class="gb-warn" flex="none" ng-if="gradeForm.$valid && $ctrl.grade.score < 65">
-        <md-tooltip>
-          Failing Score
-        </md-tooltip>
-        warning
-      </md-icon>
-
-      <!-- Validation Error -->
-      <md-icon class="gb-bad" flex="none" ng-if="gradeForm.$invalid">
-        <md-tooltip>
-          <span ng-if="gradeForm.name.$error.required || gradeForm.score.$error.required">All fields required</span>
-          <span ng-if="gradeForm.name.$error.pattern">Invalid Name</span>
-          <span ng-if="gradeForm.score.$error.min || gradeForm.score.$error.max">Invalid Score</span>
-        </md-tooltip>
-        error
-      </md-icon>
-
-      <div flex>
-        <input
-            name="name"
-            type="text"
-            placeholder="Name"
-            ng-model="$ctrl.grade.name"
-            ng-model-options="{ updateOn: 'blur' }"
-            ng-change="$ctrl.update()"
-            gb-update-on-enter
-            ng-pattern="/^[a-zA-Z\s]+$/"
-            required
-        >
-      </div>
+    <div flex>
+      <input
+          name="name"
+          type="text"
+          placeholder="Name"
+          ng-model="$ctrl.grade.name"
+          ng-model-options="{ updateOn: 'blur' }"
+          ng-change="$ctrl.update()"
+          gb-update-on-enter
+          ng-pattern="/^[a-zA-Z\s]+$/"
+          required
+      >
     </div>
 
-    <!-- Score -->
-    <div class="gb-score" flex="10">
+  </div>
+
+  <!-- Score -->
+  <div class="gb-cell gb-score" flex="15" layout="row">
+    <!-- Failing Score -->
+    <md-icon class="gb-warn" flex="none" ng-if="gradeForm.$valid && $ctrl.grade.score < 65">
+      <md-tooltip>
+        Failing Score
+      </md-tooltip>
+      warning
+    </md-icon>
+
+    <!-- Validation Error -->
+    <md-icon class="gb-bad" flex="none" ng-if="gradeForm.score.$invalid">
+      <md-tooltip>
+        <span ng-if="gradeForm.score.$error.required">Field is Required</span>
+        <span ng-if="gradeForm.score.$error.min || gradeForm.score.$error.max">Invalid Score</span>
+      </md-tooltip>
+      error
+    </md-icon>
+
+    <div flex>
       <input
           name="score"
           type="number"
@@ -59,13 +63,14 @@
           required
       >
     </div>
+  </div>
 
-    <div class="gb-action" flex="5">
-      <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
-        <md-tooltip>
-          Delete
-        </md-tooltip>
-        <md-icon>delete</md-icon>
-      </md-button>
-    </div>
-  </form>
+  <div class="gb-cell gb-action" flex="nogrow">
+    <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
+      <md-tooltip>
+        Delete
+      </md-tooltip>
+      <md-icon>delete</md-icon>
+    </md-button>
+  </div>
+</form>
