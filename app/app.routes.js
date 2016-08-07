@@ -3,7 +3,11 @@
 
   angular.module('gradebookApp')
     .config(function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/grades/list');
+      $urlRouterProvider.otherwise(function($injector) {
+        var $state = $injector.get('$state');
+
+        $state.go('grades.list');
+      });
 
       $stateProvider
         .state('grades', {
