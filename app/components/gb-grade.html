@@ -12,7 +12,7 @@
           ng-model="$ctrl.grade.name"
           ng-model-options="{ updateOn: 'blur' }"
           ng-change="$ctrl.update()"
-          ng-keyup="$ctrl.update($event)"
+          gb-update-on-enter
       >
     </div>
   </div>
@@ -28,7 +28,7 @@
         ng-model="$ctrl.grade.score"
         ng-model-options="{ updateOn: 'blur' }"
         ng-change="$ctrl.update()"
-        ng-keyup="$ctrl.update($event)"
+        gb-update-on-enter
     >
   </div>
 

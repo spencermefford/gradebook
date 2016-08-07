@@ -23,10 +23,8 @@
     /**
      * Update the grade.
      */
-    function update(ev) {
-      if (_.isUndefined(ev) || (!_.isEmpty(ev) && ev.keyCode === 13)) {
-        ctrl.onUpdate({$grade: ctrl.grade}); // Execute the onUpdate function
-      }
+    function update() {
+      ctrl.onUpdate({$grade: ctrl.grade}); // Execute the onUpdate function
     }
 
     /**
