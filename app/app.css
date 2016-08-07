@@ -68,6 +68,10 @@ gb-grade input {
   transition: all 0.5s ease;
 }
 
+gb-grade input.ng-empty {
+  border-bottom-color: red;
+}
+
 gb-grade input:focus {
   outline: none;
   border-bottom: 2px solid #2296f3;
@@ -84,4 +88,12 @@ gb-zero-state {
   font-weight: bold;
   display: block;
   background-color: #efefef;
+}
+
+.gb-good {
+  color: green;
+}
+
+.gb-bad {
+  color: red;
 }

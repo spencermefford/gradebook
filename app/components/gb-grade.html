@@ -2,7 +2,18 @@
 
   <!-- TODO: Validation Errors -->
   <div class="gb-name" flex="85" layout="row">
-    <md-icon flex="none">person</md-icon>
+    <md-icon class="gb-good" flex="none" ng-if="$ctrl.grade.score >= 65">
+      <md-tooltip>
+        Passing Grade
+      </md-tooltip>
+      check_circle
+    </md-icon>
+    <md-icon class="gb-bad" flex="none" ng-if="$ctrl.grade.score < 65">
+      <md-tooltip>
+        Failing Grade
+      </md-tooltip>
+      warning
+    </md-icon>
     <div flex>
       <input
           type="text"
@@ -32,7 +43,7 @@
 
   <div class="gb-action" flex="5">
     <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
-      <md-tooltip md-direction="top">
+      <md-tooltip>
         Delete
       </md-tooltip>
       <md-icon>delete</md-icon>
