@@ -24,7 +24,7 @@
      * Fetch all Grades.
      * @returns {Promise}
      */
-    function fetch() {
+    function fetch() { // TODO: Unit tests
       return $http.get(API_GRADES)
         .then(function(resp) {
           service.data.grades = resp.data;
@@ -39,7 +39,7 @@
      * @param {number} score Test score.
      * @returns {Promise}
      */
-    function create(name, score) {
+    function create(name, score) { // TODO: Unit tests
       var data = {
         name: name,
         score: score
@@ -59,7 +59,7 @@
      * @param {Object} obj Grade object.
      * @returns {Promise}
      */
-    function update(id, obj) {
+    function update(id, obj) { // TODO: Unit tests
       return $http.put(API_GRADES + '/' + id, obj)
         .then(function(resp) {
           return resp.data;
@@ -71,7 +71,7 @@
      * @param {number} id Grade ID.
      * @returns {Promise}
      */
-    function remove(id) {
+    function remove(id) { // TODO: Unit tests
       return $http.delete(API_GRADES + '/' + id)
         .then(function(resp) {
           var found = _.find(service.data.grades, ['id', id]);

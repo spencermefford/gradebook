@@ -74,6 +74,9 @@ gb-grade input.ng-empty {
 
 gb-grade input:focus {
   outline: none;
+}
+
+gb-grade input:focus:not(.ng-invalid) {
   border-bottom: 2px solid #2296f3;
 }
 
@@ -92,6 +95,10 @@ gb-zero-state {
 
 .gb-good {
   color: green;
+}
+
+.gb-warn {
+  color: orange;
 }
 
 .gb-bad {

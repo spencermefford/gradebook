@@ -1,52 +1,68 @@
-<div layout="row" layout-align="start stretch">
+  <form name="gradeForm" novalidate layout="row" layout-align="start stretch">
+    <!-- TODO: Use ngPattern?? -->
 
-  <!-- TODO: Validation Errors -->
-  <div class="gb-name" flex="85" layout="row">
-    <md-icon class="gb-good" flex="none" ng-if="$ctrl.grade.score >= 65">
-      <md-tooltip>
-        Passing Grade
-      </md-tooltip>
-      check_circle
-    </md-icon>
-    <md-icon class="gb-bad" flex="none" ng-if="$ctrl.grade.score < 65">
-      <md-tooltip>
-        Failing Grade
-      </md-tooltip>
-      warning
-    </md-icon>
-    <div flex>
+    <!-- Name -->
+    <div class="gb-name" flex="85" layout="row">
+      <!-- Passing Score -->
+      <md-icon class="gb-good" flex="none" ng-if="$ctrl.grade.score >= 65 && gradeForm.name.$valid">
+        <md-tooltip>
+          Passing Grade
+        </md-tooltip>
+        check_circle
+      </md-icon>
+
+      <!-- Validation Error -->
+      <md-icon class="gb-bad" flex="none" ng-if="gradeForm.$invalid">
+        <md-tooltip>
+          <span ng-if="gradeForm.name.$error.required || gradeForm.score.$error.required">All fields required</span>
+        </md-tooltip>
+        error
+      </md-icon>
+
+      <!-- Failing Score -->
+      <md-icon class="gb-warn" flex="none" ng-if="gradeForm.$valid && $ctrl.grade.score < 65">
+        <md-tooltip>
+          Failing Score
+        </md-tooltip>
+        warning
+      </md-icon>
+      
+      <div flex>
+        <input
+            name="name"
+            type="text"
+            placeholder="Name"
+            ng-model="$ctrl.grade.name"
+            ng-model-options="{ updateOn: 'blur' }"
+            ng-change="$ctrl.update()"
+            gb-update-on-enter
+            required
+        >
+      </div>
+    </div>
+
+    <!-- Score -->
+    <div class="gb-score" flex="10">
       <input
-          type="text"
-          placeholder="Name"
-          ng-model="$ctrl.grade.name"
+          name="score"
+          type="number"
+          placeholder="Score"
+          ng-model="$ctrl.grade.score"
           ng-model-options="{ updateOn: 'blur' }"
           ng-change="$ctrl.update()"
           gb-update-on-enter
+          ng-minlength="0"
+          ng-maxlength="100"
+          required
       >
     </div>
-  </div>
 
-
-  <!-- TODO: Validation Errors -->
-  <div class="gb-score" flex="10">
-    <input
-        type="number"
-        placeholder="Score"
-        min="0"
-        max="100"
-        ng-model="$ctrl.grade.score"
-        ng-model-options="{ updateOn: 'blur' }"
-        ng-change="$ctrl.update()"
-        gb-update-on-enter
-    >
-  </div>
-
-  <div class="gb-action" flex="5">
-    <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
-      <md-tooltip>
-        Delete
-      </md-tooltip>
-      <md-icon>delete</md-icon>
-    </md-button>
-  </div>
-</div>
+    <div class="gb-action" flex="5">
+      <md-button class="md-icon-button" aria-label="Delete" ng-click="$ctrl.remove($event)">
+        <md-tooltip>
+          Delete
+        </md-tooltip>
+        <md-icon>delete</md-icon>
+      </md-button>
+    </div>
+  </form>
