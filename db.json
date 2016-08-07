@@ -1,3 +1,14 @@
 {
-  "grades": []
+  "grades": [
+    {
+      "name": "asdasdasadasdd",
+      "score": 22222,
+      "id": 1
+    },
+    {
+      "name": "sada",
+      "score": 1,
+      "id": 2
+    }
+  ]
 }

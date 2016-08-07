@@ -15,21 +15,7 @@
 </md-toolbar>
 
 <div class="gb-student-grades" ng-if="ctrl.GradeService.data.grades.length">
-  <div class="gb-student-grade" ng-repeat="grade in ctrl.GradeService.data.grades" layout="row" layout-align="start center">
-    <md-input-container flex="90">
-      <label>Student Name</label>
-      <input ng-model="grade.name" type="text">
-    </md-input-container>
-
-    <md-input-container flex="10">
-      <label>Score</label>
-      <input ng-model="grade.score" type="number">
-    </md-input-container>
-
-    <md-button class="md-icon-button" aria-label="Delete" ng-click="ctrl.removeStudent($event, grade.id)">
-      <md-icon>delete</md-icon>
-    </md-button>
-  </div>
+  <gb-grade grade="grade" on-update="ctrl.updateStudent($grade)" on-delete="ctrl.removeStudent($grade)" ng-repeat="grade in ctrl.GradeService.data.grades"></gb-grade>
 </div>
 
 <gb-zero-state ng-if="!ctrl.GradeService.data.grades.length">

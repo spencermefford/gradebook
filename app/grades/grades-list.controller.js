@@ -9,6 +9,7 @@
 
     ctrl.GradeService = GradeService;
     ctrl.newStudent = newStudent;
+    ctrl.updateStudent = updateStudent;
     ctrl.removeStudent = removeStudent;
 
     /**
@@ -16,6 +17,7 @@
      * @param {Event} ev
      */
     function newStudent(ev) {
+      // TODO: Add form validation to dialog
       var confirm = $mdDialog.prompt()
         .title('What is your student\'s name?')
         .placeholder('John or Jane Doe')
@@ -29,17 +31,24 @@
         });
     }
 
-    function removeStudent(ev, id) {
-      var confirm = $mdDialog.confirm()
-        .title('Are you sure you want to delete this student?')
-        .targetEvent(ev)
-        .ok('Confirm')
-        .cancel('Cancel');
+    /**
+     * Update the grade.
+     * @param {Object} grade Grade.
+     */
+    function updateStudent(grade) {
+      if (_.isPlainObject(grade) && !_.isEmpty(grade)) {
+        GradeService.update(grade.id, grade);
+      }
+    }
 
-      $mdDialog.show(confirm)
-        .then(function() {
-          GradeService.remove(id);
-        });
+    /**
+     * Remove the student.
+     * @param {Object} grade Grade.
+     */
+    function removeStudent(grade) {
+      if (_.isPlainObject(grade) && !_.isEmpty(grade)) {
+        GradeService.remove(grade.id);
+      }
     }
   }
 })();
