@@ -18,7 +18,7 @@
 </md-toolbar>
 
 <div class="gb-student-grades" ng-if="ctrl.GradeService.data.grades.length">
-  <gb-grade grade="grade" on-update="ctrl.updateStudent($grade)" on-delete="ctrl.removeStudent($grade)" ng-repeat="grade in ctrl.GradeService.data.grades | orderBy:'name'"></gb-grade>
+  <gb-grade index="$index" grade="grade" on-update="ctrl.updateStudent($grade)" on-delete="ctrl.removeStudent($grade)" ng-repeat="grade in ctrl.GradeService.data.grades | orderBy:'name'"></gb-grade>
 </div>
 
 <gb-zero-state ng-if="!ctrl.GradeService.data.grades.length">

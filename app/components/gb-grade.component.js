@@ -4,6 +4,7 @@
   var gbGrade = {
     templateUrl: 'components/gb-grade.html',
     bindings: {
+      index: '<',
       grade: '<',
       onUpdate: '&',
       onDelete: '&'
